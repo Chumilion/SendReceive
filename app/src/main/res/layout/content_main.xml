@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="#ccc"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_main"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/enterText"
+        android:layout_width="400dp"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true"
+        android:hint="Enter text"
+        android:text=""
+        android:textColorHint="#aaa"
+        android:textSize="30dp"
+        android:textColor="#000"
+        android:padding="20dp"
+        android:background="@drawable/back"/>
+
+    <TextView
+        android:id="@+id/receivedText"
+        android:text="Waiting for text..."
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:textSize="50dp"
+        android:layout_above="@id/enterText"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"/>
+
+    <Button
+        android:id="@+id/sendButton"
+        android:layout_width="400dp"
+        android:layout_height="80dp"
+        android:background="#000"
+        android:text="Send"
+        android:textColor="#eee"
+        android:textSize="30dp"
+        android:textAllCaps="false"
+        android:layout_below="@id/enterText"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"/>
+
+    <Button
+        android:id="@+id/receiveButton"
+        android:layout_width="400dp"
+        android:layout_height="80dp"
+        android:background="#000"
+        android:text="Receive"
+        android:textColor="#eee"
+        android:textSize="30dp"
+        android:textAllCaps="false"
+        android:layout_below="@id/sendButton"
+        android:layout_centerHorizontal="true"/>
+</RelativeLayout>
