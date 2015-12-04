@@ -11,11 +11,17 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity
 {
     Firebase myFirebaseRef;
+    DataSnapshot textSnapshot;
+    TextView receivedText;
+    EditText enterText;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -38,15 +44,32 @@ public class MainActivity extends AppCompatActivity
 
         myFirebaseRef = new Firebase("https://glowing-inferno-4479.firebaseio.com/");
 
-        EditText enterText = (EditText) findViewById(R.id.enterText);
-        TextView receivedText = (TextView) findViewById(R.id.receivedText);
+        enterText = (EditText) findViewById(R.id.enterText);
+        receivedText = (TextView) findViewById(R.id.receivedText);
 
+        myFirebaseRef.child("textSendReceive").addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
+                textSnapshot = dataSnapshot;
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError)
+            {}
+        });
 
     }
 
     public void sendTextFirebase(View v)
     {
-        myFirebaseRef.child("textSendReceive").setValue(((EditText) v).getText());
+        myFirebaseRef.child("textSendReceive").setValue(enterText.getText() + "");
+    }
+
+    public void receiveTextFirebase(View v)
+    {
+        receivedText.setText(textSnapshot.getValue() + "");
     }
 
     @Override
